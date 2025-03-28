@@ -28,7 +28,7 @@ st.markdown("""
 # -------------------------------
 # Load the Model (cached for performance)
 # -------------------------------
-@st.cache(allow_output_mutation=True)
+@st.cache_resource
 def load_mnist_model():
     model = load_model('best_mnist_model.h5')
     return model
@@ -49,7 +49,7 @@ uploaded_file = st.file_uploader("Choose an image...", type=["jpg", "jpeg", "png
 if uploaded_file is not None:
     # Open and display the uploaded image
     image = Image.open(uploaded_file)
-    st.image(image, caption='Uploaded Image', use_column_width=True)
+    st.image(image, caption='Uploaded Image', use_container_width=True)
     
     # Preprocess the image: convert to grayscale, resize, normalize
     image_gray = ImageOps.grayscale(image)
